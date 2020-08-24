@@ -1,41 +1,83 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
-import { AppBar, Box, Toolbar, Typography, IconButton, Grid } from '@material-ui/core';
+import { Home, ContactMail, AssignmentInd} from '@material-ui/icons';
+import { AppBar,Avatar, Box, Toolbar, Typography, IconButton, Grid, Hidden , SwipeableDrawer, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import { Link } from "react-router-dom";
+import MyImage from '../Images/MyPic.jpg'
+import MenuBookIcon from '@material-ui/icons/MenuBook';
+import InfoIcon from '@material-ui/icons/Info';
 
 const useStyles = makeStyles(theme => ({
     pageTitle: {
        color: "#fff",
        textDecoration: "none"
+    },
+    menuDrawer: {
+        // width: "30%",
+        background: "linear-gradient(#6692F2,#1F285A)"
+    },
+    pic: {
+        height: theme.spacing(12),
+        width: theme.spacing(12),
+        margin: theme.spacing(1),
+    },
+    listItem : {
+        color: "#fff"
     }
 }))
 
 const Header = () => {
     const classes = useStyles();
 
+    const [openDrawer,setOpenDrawer] = useState(false);
+
     const pageArray = [
         {
+            icon: <Home />,
             title: "Home",
             path: "/My_PortFolio"
         },
         {
+            icon: <MenuBookIcon />,
             title: "Education",
             path: "/My_PortFolio/Education"
         },
         {
+            icon: <AssignmentInd />,
             title: "Resume",
             path: "/My_PortFolio/Resume"
         },
         {
+            icon: <InfoIcon />,
             title: "About",
             path: "/My_PortFolio/About"
         },
         {
+            icon: <ContactMail />,
             title: "Contact",
             path: "/My_PortFolio/Contact"
         }
     ]
+
+    const pageList = (slider) => (
+        <Box>
+            {/* <Grid container justify="center">
+            <Avatar className={classes.pic} alt="Mayank Bhardwaj" src={MyImage} />
+            </Grid> */}
+            <List>
+                    {pageArray.map((page,key) => (
+                        <ListItem button onClick = {() => setOpenDrawer(false)} key = {key} component = {Link} to = {page.path}>
+                            <ListItemIcon className = {classes.listItem}>
+                                {page.icon}
+                            </ListItemIcon>
+                            <ListItemText className = {classes.listItem} primary = {page.title} />
+                        </ListItem>
+                    ))
+                }
+            </List>
+        </Box>
+        );
 
     return (
         <Box>
@@ -50,8 +92,9 @@ const Header = () => {
                                 Portfolio
                             </Typography>
                         </Grid>
+                        <Hidden only={["sm","xs"]}>
                         <Grid item sm = {6} xs = {10} alignItems="center" >
-                            <Grid container justify="flex-end" >
+                            <Grid container style = {{marginTop: 4}}  justify="flex-end" >
                                 {
                                     pageArray.map(page => (
                                         <Grid item sm = {2} xs = {2} >
@@ -61,9 +104,31 @@ const Header = () => {
                                 }
                             </Grid>
                         </Grid>
+                        </Hidden> 
+                        <Hidden only={["lg","md"]}>
+                        <Grid item sm = {6} xs = {10} alignItems="center" >
+                            <Grid container justify="flex-end" >
+                            <IconButton edge="start" onClick = {() => setOpenDrawer(true)} className={classes.menuButton} color="inherit" aria-label="menu">
+                            <MenuIcon />
+                            </IconButton>
+                            </Grid>
+                        </Grid>
+                        
+                        </Hidden> 
                     </Grid>
                 </Toolbar>
             </AppBar>
+            <SwipeableDrawer
+            classes={{
+                paper: classes.menuDrawer, // class name, e.g. `classes-nesting-root-x`
+              }}
+            anchor= "right"
+            open={openDrawer}
+            onClose={() => setOpenDrawer(false)}
+            onOpen={() => setOpenDrawer(false)}
+          >
+            {pageList("right")}
+          </SwipeableDrawer>
         </Box>
     )
 }
