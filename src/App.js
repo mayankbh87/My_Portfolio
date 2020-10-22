@@ -25,7 +25,7 @@ function App() {
         <Header />
         <Switch>
           <Route exact path = "/My_Portfolio" component = {Home} />
-          <Route  path = "/My_Portfolio/Education" component = {Education} />
+          <Route  path = "/My_Portfolio/Journey" component = {Education} />
           <Route  path = "/My_Portfolio/Resume" component = {Resume} />
           <Route  path = "/My_Portfolio/About" component = {About} />
           <Route  path = "/My_Portfolio/Contact" component = {Home} />

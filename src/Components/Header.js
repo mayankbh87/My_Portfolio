@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Home, ContactMail, AssignmentInd} from '@material-ui/icons';
-import { AppBar,Avatar, Box, Toolbar, Typography, IconButton, Grid, Hidden , SwipeableDrawer, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { AppBar, Box, Toolbar, Typography, IconButton, Grid, Hidden , SwipeableDrawer, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import { Link } from "react-router-dom";
-import MyImage from '../Images/MyPic.jpg'
+// import MyImage from '../Images/MyPic.jpg'
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import InfoIcon from '@material-ui/icons/Info';
 
@@ -36,27 +36,27 @@ const Header = () => {
         {
             icon: <Home />,
             title: "Home",
-            path: "/My_PortFolio"
+            path: "/My_Portfolio"
         },
         {
             icon: <MenuBookIcon />,
-            title: "Education",
-            path: "/My_PortFolio/Education"
+            title: "Journey",
+            path: "/My_Portfolio/Journey"
         },
         {
             icon: <AssignmentInd />,
             title: "Resume",
-            path: "/My_PortFolio/Resume"
+            path: "/My_Portfolio/Resume"
         },
         {
             icon: <InfoIcon />,
             title: "About",
-            path: "/My_PortFolio/About"
+            path: "/My_Portfolio/About"
         },
         {
             icon: <ContactMail />,
             title: "Contact",
-            path: "/My_PortFolio/Contact"
+            path: "/My_Portfolio/Contact"
         }
     ]
 
